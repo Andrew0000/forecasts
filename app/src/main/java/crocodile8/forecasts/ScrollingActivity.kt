@@ -23,11 +23,15 @@ class ScrollingActivity : AppCompatActivity() {
 
         adapter.setItems(
             listOf(
-                ForecastsFeedAdapter.Item("1"),
-                ForecastsFeedAdapter.Item("2"),
-                ForecastsFeedAdapter.Item("3"),
-                ForecastsFeedAdapter.Item("4"),
-                ForecastsFeedAdapter.Item("5")
+                ForecastsFeedAdapter.Item.Bookmakers(listOf()),
+                ForecastsFeedAdapter.Item.Card("1"),
+                ForecastsFeedAdapter.Item.Card("2"),
+                ForecastsFeedAdapter.Item.Card("3"),
+                ForecastsFeedAdapter.Item.Card("4"),
+                ForecastsFeedAdapter.Item.Card("5"),
+                ForecastsFeedAdapter.Item.Card("6"),
+                ForecastsFeedAdapter.Item.Card("7"),
+                ForecastsFeedAdapter.Item.Card("8"),
             )
         )
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)

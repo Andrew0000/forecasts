@@ -6,10 +6,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.forecast_feed_item.view.*
+import java.lang.IllegalArgumentException
 
-//TODO Improvement: Can be used any kind of delegates-based adapter
+//TODO Improvement: Use any kind of delegates-based adapter
 
-class ForecastsFeedAdapter : RecyclerView.Adapter<ForecastsFeedAdapter.ViewHolder>() {
+class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    companion object {
+        val TYPE_CARD = 1
+        val TYPE_BOOKMAKERS = 2
+    }
 
     private var items = listOf<Item>()
 
@@ -21,21 +27,45 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<ForecastsFeedAdapter.ViewHolde
 
     override fun getItemCount(): Int = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.forecast_feed_item, parent, false))
+    override fun getItemViewType(position: Int): Int = items[position].type
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
-        holder.titleTextView.text = item.title
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return when (viewType) {
+            TYPE_CARD -> CardVH(inflater.inflate(R.layout.forecast_feed_item, parent, false))
+            TYPE_BOOKMAKERS -> BookmakersVH(inflater.inflate(R.layout.forecast_bookmakers_item, parent, false))
+            else -> throw IllegalArgumentException()
+        }
     }
 
-    data class Item(
-        val title: String
-    )
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = items[position]
+        when (holder) {
+            is CardVH -> {
+                item as Item.Card
+                holder.titleTextView.text = item.title
+            }
+            is BookmakersVH -> {
+                item as Item.Bookmakers
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            }
+        }
+    }
 
+    sealed class Item(val type: Int) {
+
+        data class Card(
+            val title: String
+        ) : Item(TYPE_CARD)
+
+        data class Bookmakers(
+            val items: List<Any>
+        ) : Item(TYPE_BOOKMAKERS)
+    }
+
+    class CardVH(view: View) : RecyclerView.ViewHolder(view) {
         val titleTextView: TextView = view.feedItemTitleTextView
     }
+
+    class BookmakersVH(view: View) : RecyclerView.ViewHolder(view)
 }
