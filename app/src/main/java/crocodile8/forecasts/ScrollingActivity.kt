@@ -2,28 +2,42 @@ package crocodile8.forecasts
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
+import crocodile8.forecasts.utils.log
+import crocodile8.forecasts.utils.subscribeDefault
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity() {
 
     private val adapter = ForecastsFeedAdapter()
+    private val scrollListener = ScrollListener()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
-        setSupportActionBar(toolbar)
-        toolbarLayout.title = title
+        setupAppBarCollapsing()
+        setupMainRecycler()
+    }
 
-        appBar.addOnOffsetChangedListener(OnOffsetChangedListener { barLayout, verticalOffset ->
-            val expandFraction =
-                ((verticalOffset.toFloat() / barLayout.totalScrollRange.toFloat()) + 1f)
-                .coerceIn(0f, 1f)
-            toolbarLayout.alpha = expandFraction
-        })
+    private fun setupAppBarCollapsing() {
+        val appBarMaxHeight = resources.getDimensionPixelSize(R.dimen.app_bar_max_height)
+        val appBarMinHeight = resources.getDimensionPixelSize(R.dimen.app_bar_min_height)
+        scrollListener.observeY()
+            .subscribeDefault { yScroll ->
+                log("yScroll: $yScroll")
+                val expandFraction = (1f - (yScroll / appBarMaxHeight)).coerceIn(0f, 1f)
+                val appBarHeight =
+                    appBarMinHeight + (appBarMaxHeight - appBarMinHeight) * expandFraction
+                mainTitleTextView.alpha = expandFraction
+                appBar.updateLayoutParams {
+                    height = appBarHeight.toInt()
+                }
+            }
+    }
 
+    private fun setupMainRecycler() {
         adapter.setItems(
             listOf(
                 ForecastsFeedAdapter.Item.Bookmakers(listOf()),
@@ -37,7 +51,9 @@ class ScrollingActivity : AppCompatActivity() {
                 ForecastsFeedAdapter.Item.Card("8"),
             )
         )
-        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = adapter
+        recyclerView.addOnScrollListener(scrollListener)
     }
 }

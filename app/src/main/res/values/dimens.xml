@@ -1,4 +1,5 @@
 <resources>
-    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_max_height">180dp</dimen>
+    <dimen name="app_bar_min_height">48dp</dimen>
     <dimen name="default_margins">16dp</dimen>
 </resources>
