@@ -14,7 +14,11 @@ import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity() {
 
-    private val adapter = ForecastsFeedAdapter()
+    private val adapter = ForecastsFeedAdapter(
+        onRepeatClick = {
+            viewModel.onRepeatClick(it)
+        }
+    )
     private val scrollListener = ScrollListener()
     private val viewModel: ScrollingActivityVM by viewModels()
 

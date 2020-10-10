@@ -10,7 +10,9 @@ import kotlinx.android.synthetic.main.forecast_feed_item.view.*
 
 //TODO Improvement: Use any kind of delegates-based adapter
 
-class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ForecastsFeedAdapter(
+    private val onRepeatClick: (ForecastItem.Card) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TYPE_CARD = 1
@@ -73,7 +75,10 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.description.text = item.description
         holder.authorName.text = item.authorName
         holder.authorROI.text = item.authorROI
-        holder.bottomText.text = item.repeat
+        holder.bottomText.apply {
+            text = item.repeat
+            setOnClickListener { onRepeatClick(item) }
+        }
     }
 
     class CardVH(view: View) : RecyclerView.ViewHolder(view) {

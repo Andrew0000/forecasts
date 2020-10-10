@@ -29,6 +29,10 @@ class ScrollingActivityVM : ViewModel() {
 
     fun getProgressBarVisible(): LiveData<Boolean> = progressBarVisible
 
+    fun onRepeatClick(item: ForecastItem.Card) {
+        //TODO show something
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
