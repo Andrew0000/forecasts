@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity() {
@@ -15,13 +14,14 @@ class ScrollingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
-        setSupportActionBar(findViewById(R.id.toolbar))
-        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
+        setSupportActionBar(toolbar)
+        toolbarLayout.title = title
 
-        app_bar.addOnOffsetChangedListener(OnOffsetChangedListener { barLayout, verticalOffset ->
-            val expandFraction = ((verticalOffset.toFloat() / barLayout.totalScrollRange.toFloat()) + 1f)
+        appBar.addOnOffsetChangedListener(OnOffsetChangedListener { barLayout, verticalOffset ->
+            val expandFraction =
+                ((verticalOffset.toFloat() / barLayout.totalScrollRange.toFloat()) + 1f)
                 .coerceIn(0f, 1f)
-            toolbar_layout.alpha = expandFraction
+            toolbarLayout.alpha = expandFraction
         })
 
         adapter.setItems(
