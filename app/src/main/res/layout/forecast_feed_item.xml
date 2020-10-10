@@ -1,17 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/default_margins">
 
-    <TextView
-        android:id="@+id/feedItemTitleTextView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margins"
-        android:textAppearance="@android:style/TextAppearance.Material.Large"
-        tools:text="Title"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="@dimen/default_margins"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margins"
+            android:textAppearance="@android:style/TextAppearance.Material.Caption"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintEnd_toStartOf="@id/time"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            tools:text="Title"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margins"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            tools:text="23:23"/>
+
+        <TextView
+            android:id="@+id/who"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margins"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/coefficient"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            tools:text="Russia\nGermany"/>
+
+        <TextView
+            android:id="@+id/coefficient"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margins"
+            android:textAppearance="@android:style/TextAppearance.Material.Body2"
+            android:textSize="14sp"
+            android:textColor="@color/blue"
+            android:background="@drawable/rounded_bg"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            tools:text="1.43"/>
+
+        <TextView
+            android:id="@+id/belowWho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/who"
+            tools:text="Win"/>
+
+        <View
+            android:id="@+id/descriptionBg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_bg_8"
+            android:backgroundTint="@color/gray"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:layout_marginTop="@dimen/default_margins"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/belowWho"
+            app:layout_constraintBottom_toBottomOf="@id/bottomLine"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margins_double"
+            android:layout_marginEnd="@dimen/default_margins_double"
+            android:layout_marginTop="@dimen/default_margins_double"
+            android:textAppearance="@android:style/TextAppearance.Material.Caption"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/belowWho"
+            tools:text="Description\nDescription\nDescription\nDescription"/>
+
+        <ImageView
+            android:id="@+id/authorIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/default_margins_double"
+            android:layout_marginTop="@dimen/default_margins"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/authorName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margins"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/authorIcon"
+            app:layout_constraintEnd_toStartOf="@id/authorROI"
+            app:layout_constraintTop_toTopOf="@id/authorIcon"
+            app:layout_constraintBottom_toBottomOf="@id/authorIcon"
+            tools:text="Name"/>
+
+        <TextView
+            android:id="@+id/authorROI"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margins_double"
+            android:textAppearance="@android:style/TextAppearance.Material.Caption"
+            android:textSize="12sp"
+            android:background="@drawable/rounded_bg"
+            android:backgroundTint="@color/white"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/authorIcon"
+            app:layout_constraintBottom_toBottomOf="@id/authorIcon"
+            tools:text="ROI 12%"/>
+
+        <View
+            android:id="@+id/descriptionGroupBottomBarrier"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/default_margins"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/authorROI"/>
+
+        <View
+            android:id="@+id/bottomLine"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/gray"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:layout_marginTop="@dimen/default_margins"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionGroupBottomBarrier"/>
+
+        <TextView
+            android:id="@+id/bottomText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bottomLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Repeat"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

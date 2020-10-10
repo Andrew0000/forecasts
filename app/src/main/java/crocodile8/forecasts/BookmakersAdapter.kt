@@ -27,7 +27,7 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.titleTextView.text = item.title
+
     }
 
     data class Item(
@@ -36,6 +36,5 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val titleTextView: TextView = view.feedItemTitleTextView
     }
 }

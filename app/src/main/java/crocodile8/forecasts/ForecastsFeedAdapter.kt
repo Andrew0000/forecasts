@@ -13,8 +13,8 @@ import java.lang.IllegalArgumentException
 class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
-        val TYPE_CARD = 1
-        val TYPE_BOOKMAKERS = 2
+        const val TYPE_CARD = 1
+        const val TYPE_BOOKMAKERS = 2
     }
 
     private var items = listOf<Item>()
@@ -41,10 +41,7 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
         when (holder) {
-            is CardVH -> {
-                item as Item.Card
-                holder.titleTextView.text = item.title
-            }
+            is CardVH -> bindCard(holder, item as Item.Card)
             is BookmakersVH -> {
                 item as Item.Bookmakers
 
@@ -52,10 +49,31 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    private fun bindCard(
+        holder: CardVH,
+        item: Item.Card
+    ) {
+        holder.title.text = item.title
+        holder.time.text = item.time
+        holder.who.text = item.who
+        holder.coefficient.text = item.coefficient
+        holder.belowWho.text = item.belowWho
+        holder.description.text = item.description
+        holder.authorName.text = item.authorName
+        holder.authorROI.text = item.authorROI
+    }
+
     sealed class Item(val type: Int) {
 
         data class Card(
-            val title: String
+            val title: String,
+            val time: String,
+            val who: String,
+            val coefficient: String,
+            val belowWho: String,
+            val description: String,
+            val authorName: String,
+            val authorROI: String
         ) : Item(TYPE_CARD)
 
         data class Bookmakers(
@@ -64,7 +82,14 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class CardVH(view: View) : RecyclerView.ViewHolder(view) {
-        val titleTextView: TextView = view.feedItemTitleTextView
+        val title: TextView = view.title
+        val time: TextView = view.time
+        val who: TextView = view.who
+        val coefficient: TextView = view.coefficient
+        val belowWho: TextView = view.belowWho
+        val description: TextView = view.description
+        val authorName: TextView = view.authorName
+        val authorROI: TextView = view.authorROI
     }
 
     class BookmakersVH(view: View) : RecyclerView.ViewHolder(view)
