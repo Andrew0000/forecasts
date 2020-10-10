@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/default_margins">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/feedItemTitleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margins"
+        android:layout_marginTop="@dimen/default_margins"
+        android:layout_marginStart="@dimen/default_margins"
+        android:layout_marginEnd="@dimen/default_margins"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:text="Bookmakers rating"/>
+        android:text="@string/bookmakers_rating"/>
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ratingsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bookmaker_recycler_height"
+        android:paddingStart="@dimen/default_margins"
+        android:clipToPadding="false"
+        android:layout_marginBottom="@dimen/default_margins"
+        tools:ignore="RtlSymmetry" />
+
+</LinearLayout>

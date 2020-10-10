@@ -2,5 +2,8 @@
     <dimen name="app_bar_max_height">108dp</dimen>
     <dimen name="app_bar_min_height">48dp</dimen>
     <dimen name="default_margins">16dp</dimen>
+    <dimen name="default_margins_half">8dp</dimen>
     <dimen name="default_margins_double">32dp</dimen>
+    <dimen name="bookmaker_item_height">120dp</dimen>
+    <dimen name="bookmaker_recycler_height">140dp</dimen>
 </resources>

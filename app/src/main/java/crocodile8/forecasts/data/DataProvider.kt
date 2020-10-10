@@ -9,6 +9,54 @@ import java.util.concurrent.TimeUnit
  */
 class DataProvider {
 
+    fun getBookmakers(): Observable<List<Bookmaker>> = Observable.timer(2, TimeUnit.SECONDS)
+        .observeOn(Schedulers.io())
+        .map {
+            listOf(
+                Bookmaker(
+                    title = "Bookmaker 1",
+                    rating = 4.7f,
+                    bottomText = "Бонус 1000р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 2",
+                    rating = 4.8f,
+                    bottomText = "Бонус 2000р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 3",
+                    rating = 3.7f,
+                    bottomText = "Бонус 3000р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 4",
+                    rating = 5f,
+                    bottomText = "Бонус 4000р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 5",
+                    rating = 4.2f,
+                    bottomText = "Бонус 200р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 6",
+                    rating = 4.5f,
+                    bottomText = "Бонус 600р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 7",
+                    rating = 4.1f,
+                    bottomText = "Бонус 800р"
+                ),
+                Bookmaker(
+                    title = "Bookmaker 8",
+                    rating = 4.9f,
+                    bottomText = "Бонус 950р"
+                )
+            )
+        }
+
+
     fun getForecasts(): Observable<List<Forecast>> = Observable.timer(2, TimeUnit.SECONDS)
         .observeOn(Schedulers.io())
         .map {

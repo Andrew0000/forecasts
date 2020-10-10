@@ -3,16 +3,18 @@ package crocodile8.forecasts.presentation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import crocodile8.forecasts.R
+import kotlinx.android.synthetic.main.bookmaker_item.view.*
 
 //TODO Improvement: Can be used any kind of delegates-based adapter
 
 class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
 
-    private var items = listOf<Item>()
+    private var items = listOf<BookmakersItem>()
 
-    fun setItems(newItems: List<Item>) {
+    fun setItems(newItems: List<BookmakersItem>) {
         items = newItems
         notifyDataSetChanged()
         //TODO Improvement: Use Diff utils if needed
@@ -24,7 +26,7 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
         ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(
-                    R.layout.forecast_feed_item,
+                    R.layout.bookmaker_item,
                     parent,
                     false
                 )
@@ -32,14 +34,17 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-
+        holder.apply {
+            title.text = item.title
+            rating.text = item.rating
+            bottomText.text = item.bottomText
+        }
     }
-
-    data class Item(
-        val title: String
-    )
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+        val title: TextView = view.title
+        val rating: TextView = view.rating
+        val bottomText: TextView = view.bottomText
     }
 }
+

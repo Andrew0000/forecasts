@@ -3,11 +3,14 @@ package crocodile8.forecasts.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import crocodile8.forecasts.data.Bookmaker
 import crocodile8.forecasts.data.DataProvider
 import crocodile8.forecasts.data.Forecast
+import crocodile8.forecasts.utils.onMain
 import crocodile8.forecasts.utils.subscribeDefault
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 
 /**
@@ -22,7 +25,7 @@ class ScrollingActivityVM : ViewModel() {
     private val disposable = CompositeDisposable()
 
     init {
-        observeForecasts()
+        observeData()
     }
 
     fun getForecasts(): LiveData<List<ForecastItem>> = forecasts
@@ -38,16 +41,21 @@ class ScrollingActivityVM : ViewModel() {
         disposable.clear()
     }
 
-    private fun observeForecasts() {
-        dataProvider.getForecasts()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeDefault { forecastsData ->
-                forecasts.postValue(
-                    listOf(ForecastItem.Bookmakers(listOf())) +
-                            forecastsData.map { mapForecast(it) }
-                )
-                progressBarVisible.postValue(false)
-            }
+    private fun observeData() {
+        Observable
+            .combineLatest(
+                dataProvider.getForecasts().onMain(),
+                dataProvider.getBookmakers().onMain(),
+                BiFunction { forecastsData: List<Forecast>, bookmakersData: List<Bookmaker> ->
+                    val bookmakersMapped = bookmakersData.map { mapBookmakers(it) }
+                    forecasts.value =
+                        listOf(ForecastItem.Bookmakers(bookmakersMapped)) +
+                                forecastsData.map { mapForecast(it) }
+                    progressBarVisible.value = false
+                    Unit
+                }
+            )
+            .subscribeDefault()
             .addTo(disposable)
     }
 
@@ -62,6 +70,14 @@ class ScrollingActivityVM : ViewModel() {
             authorName = authorName,
             authorROI = authorROI,
             repeat = repeat
+        )
+    }
+
+    private fun mapBookmakers(src: Bookmaker) = with(src){
+        BookmakersItem(
+            title = title,
+            rating = rating.toString(),
+            bottomText = bottomText
         )
     }
 }

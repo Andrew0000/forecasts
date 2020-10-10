@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="180dp"
+    android:layout_height="@dimen/bookmaker_item_height"
+    android:layout_marginTop="@dimen/default_margins"
+    android:layout_marginBottom="@dimen/default_margins"
+    android:layout_marginEnd="@dimen/default_margins"
+    app:cardCornerRadius="8dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margins"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        tools:text="Title"/>
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/default_margins"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        tools:text="4.5"/>
+
+    <TextView
+        android:id="@+id/bottomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/default_margins"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        tools:text="Bottom text"/>
+
+</androidx.cardview.widget.CardView>

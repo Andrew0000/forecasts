@@ -2,6 +2,7 @@ package crocodile8.forecasts.utils
 
 import android.util.Log
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 
 /**
@@ -18,3 +19,5 @@ inline fun <T> Observable<T>.subscribeDefault(crossinline block: (T) -> Unit = {
     this.subscribe({ block(it) }, {
         Log.e("", "", it)
     })
+
+fun <T> Observable<T>.onMain() = observeOn(AndroidSchedulers.mainThread())

@@ -13,12 +13,12 @@ sealed class ForecastItem(val type: Int) {
         val authorROI: String,
         val repeat: String
     ) : ForecastItem(
-        ForecastsFeedAdapter.TYPE_CARD
+        type = ForecastsFeedAdapter.TYPE_CARD
     )
 
     data class Bookmakers(
-        val items: List<Any>
+        val items: List<BookmakersItem>
     ) : ForecastItem(
-        ForecastsFeedAdapter.TYPE_BOOKMAKERS
+        type = ForecastsFeedAdapter.TYPE_BOOKMAKERS
     )
 }
