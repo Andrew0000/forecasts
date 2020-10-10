@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Forecasts</string>
+    <string name="all_forecasts">All forecasts</string>
 </resources>

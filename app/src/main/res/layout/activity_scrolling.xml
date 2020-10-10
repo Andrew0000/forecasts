@@ -31,9 +31,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_margin="@dimen/default_margins"
+                android:layout_marginStart="@dimen/default_margins"
+                android:layout_marginBottom="48dp"
                 android:text="@string/app_name"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"/>
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="30dp"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/tabTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/default_margins"
+                android:text="@string/all_forecasts"
+                android:textAppearance="@android:style/TextAppearance.Material.Body1"/>
 
         </FrameLayout>
 
