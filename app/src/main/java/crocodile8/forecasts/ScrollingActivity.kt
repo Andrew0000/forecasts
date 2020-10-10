@@ -20,6 +20,8 @@ class ScrollingActivity : AppCompatActivity() {
         setupMainRecycler()
     }
 
+    // Use own implementation instead of default
+    // CollapsingToolbar for more control
     private fun setupAppBarCollapsing() {
         val appBarMaxHeight = resources.getDimensionPixelSize(R.dimen.app_bar_max_height)
         val appBarMinHeight = resources.getDimensionPixelSize(R.dimen.app_bar_min_height)
