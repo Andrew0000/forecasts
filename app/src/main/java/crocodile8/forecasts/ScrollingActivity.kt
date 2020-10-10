@@ -1,14 +1,11 @@
 package crocodile8.forecasts
 
 import android.os.Bundle
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity() {
@@ -20,6 +17,12 @@ class ScrollingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_scrolling)
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
+
+        app_bar.addOnOffsetChangedListener(OnOffsetChangedListener { barLayout, verticalOffset ->
+            val expandFraction = ((verticalOffset.toFloat() / barLayout.totalScrollRange.toFloat()) + 1f)
+                .coerceIn(0f, 1f)
+            toolbar_layout.alpha = expandFraction
+        })
 
         adapter.setItems(
             listOf(
