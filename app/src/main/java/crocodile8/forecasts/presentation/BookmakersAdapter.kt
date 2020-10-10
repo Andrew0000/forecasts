@@ -1,11 +1,10 @@
-package crocodile8.forecasts
+package crocodile8.forecasts.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.forecast_feed_item.view.*
+import crocodile8.forecasts.R
 
 //TODO Improvement: Can be used any kind of delegates-based adapter
 
@@ -22,8 +21,14 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.forecast_feed_item, parent, false))
+        ViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(
+                    R.layout.forecast_feed_item,
+                    parent,
+                    false
+                )
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]

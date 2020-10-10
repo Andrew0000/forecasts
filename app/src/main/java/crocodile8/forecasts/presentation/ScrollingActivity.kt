@@ -1,10 +1,11 @@
-package crocodile8.forecasts
+package crocodile8.forecasts.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import crocodile8.forecasts.R
 import crocodile8.forecasts.data.DataProvider
 import crocodile8.forecasts.data.Forecast
 import crocodile8.forecasts.utils.subscribeDefault
@@ -13,8 +14,10 @@ import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity() {
 
-    private val adapter = ForecastsFeedAdapter()
-    private val scrollListener = ScrollListener()
+    private val adapter =
+        ForecastsFeedAdapter()
+    private val scrollListener =
+        ScrollListener()
     private val dataProvider = DataProvider() //TODO DI
 
     override fun onCreate(savedInstanceState: Bundle?) {

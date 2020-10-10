@@ -1,10 +1,11 @@
-package crocodile8.forecasts
+package crocodile8.forecasts.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import crocodile8.forecasts.R
 import kotlinx.android.synthetic.main.forecast_feed_item.view.*
 import java.lang.IllegalArgumentException
 
@@ -32,8 +33,20 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            TYPE_CARD -> CardVH(inflater.inflate(R.layout.forecast_feed_item, parent, false))
-            TYPE_BOOKMAKERS -> BookmakersVH(inflater.inflate(R.layout.forecast_bookmakers_item, parent, false))
+            TYPE_CARD -> CardVH(
+                inflater.inflate(
+                    R.layout.forecast_feed_item,
+                    parent,
+                    false
+                )
+            )
+            TYPE_BOOKMAKERS -> BookmakersVH(
+                inflater.inflate(
+                    R.layout.forecast_bookmakers_item,
+                    parent,
+                    false
+                )
+            )
             else -> throw IllegalArgumentException()
         }
     }
@@ -76,11 +89,15 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val authorName: String,
             val authorROI: String,
             val repeat: String
-        ) : Item(TYPE_CARD)
+        ) : Item(
+            TYPE_CARD
+        )
 
         data class Bookmakers(
             val items: List<Any>
-        ) : Item(TYPE_BOOKMAKERS)
+        ) : Item(
+            TYPE_BOOKMAKERS
+        )
     }
 
     class CardVH(view: View) : RecyclerView.ViewHolder(view) {
