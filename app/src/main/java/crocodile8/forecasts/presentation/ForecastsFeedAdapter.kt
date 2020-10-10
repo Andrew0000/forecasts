@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import crocodile8.forecasts.R
 import kotlinx.android.synthetic.main.forecast_feed_item.view.*
-import java.lang.IllegalArgumentException
 
 //TODO Improvement: Use any kind of delegates-based adapter
 
@@ -18,9 +17,9 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         const val TYPE_BOOKMAKERS = 2
     }
 
-    private var items = listOf<Item>()
+    private var items = listOf<ForecastItem>()
 
-    fun setItems(newItems: List<Item>) {
+    fun setItems(newItems: List<ForecastItem>) {
         items = newItems
         notifyDataSetChanged()
         //TODO Improvement: Use Diff utils if needed
@@ -54,9 +53,9 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
         when (holder) {
-            is CardVH -> bindCard(holder, item as Item.Card)
+            is CardVH -> bindCard(holder, item as ForecastItem.Card)
             is BookmakersVH -> {
-                item as Item.Bookmakers
+                item as ForecastItem.Bookmakers
 
             }
         }
@@ -64,7 +63,7 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun bindCard(
         holder: CardVH,
-        item: Item.Card
+        item: ForecastItem.Card
     ) {
         holder.title.text = item.title
         holder.time.text = item.time
@@ -75,29 +74,6 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.authorName.text = item.authorName
         holder.authorROI.text = item.authorROI
         holder.bottomText.text = item.repeat
-    }
-
-    sealed class Item(val type: Int) {
-
-        data class Card(
-            val title: String,
-            val time: String,
-            val who: String,
-            val coefficient: String,
-            val belowWho: String,
-            val description: String,
-            val authorName: String,
-            val authorROI: String,
-            val repeat: String
-        ) : Item(
-            TYPE_CARD
-        )
-
-        data class Bookmakers(
-            val items: List<Any>
-        ) : Item(
-            TYPE_BOOKMAKERS
-        )
     }
 
     class CardVH(view: View) : RecyclerView.ViewHolder(view) {
@@ -114,3 +90,4 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class BookmakersVH(view: View) : RecyclerView.ViewHolder(view)
 }
+
