@@ -9,16 +9,18 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import crocodile8.forecasts.R
+import crocodile8.forecasts.presentation.forecasts.ForecastsFeedAdapter
 import crocodile8.forecasts.utils.subscribeDefault
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
 class ScrollingActivity : AppCompatActivity() {
 
-    private val adapter = ForecastsFeedAdapter(
-        onRepeatClick = {
-            viewModel.onRepeatClick(it)
-        }
-    )
+    private val adapter =
+        ForecastsFeedAdapter(
+            onRepeatClick = {
+                viewModel.onRepeatClick(it)
+            }
+        )
     private val scrollListener = ScrollListener()
     private val viewModel: ScrollingActivityVM by viewModels()
 

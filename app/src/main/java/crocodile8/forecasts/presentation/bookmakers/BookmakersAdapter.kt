@@ -1,4 +1,4 @@
-package crocodile8.forecasts.presentation
+package crocodile8.forecasts.presentation.bookmakers
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package crocodile8.forecasts.presentation
+package crocodile8.forecasts.presentation.forecasts
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import crocodile8.forecasts.R
+import crocodile8.forecasts.presentation.bookmakers.BookmakersAdapter
 import kotlinx.android.synthetic.main.forecast_bookmakers_item.view.*
 import kotlinx.android.synthetic.main.forecast_feed_item.view.*
 
@@ -119,7 +120,8 @@ class ForecastsFeedAdapter(
 
     class BookmakersVH(view: View) : RecyclerView.ViewHolder(view) {
         val recycler = view.ratingsRecyclerView
-        val adapter = BookmakersAdapter()
+        val adapter =
+            BookmakersAdapter()
     }
 }
 

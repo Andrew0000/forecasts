@@ -1,4 +1,6 @@
-package crocodile8.forecasts.presentation
+package crocodile8.forecasts.presentation.forecasts
+
+import crocodile8.forecasts.presentation.bookmakers.BookmakersItem
 
 sealed class ForecastItem(val type: Int) {
 

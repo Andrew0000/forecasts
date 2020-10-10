@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import crocodile8.forecasts.data.Bookmaker
 import crocodile8.forecasts.data.DataProvider
 import crocodile8.forecasts.data.Forecast
+import crocodile8.forecasts.presentation.bookmakers.BookmakersItem
+import crocodile8.forecasts.presentation.forecasts.ForecastItem
 import crocodile8.forecasts.utils.onMain
 import crocodile8.forecasts.utils.subscribeDefault
 import io.reactivex.Observable
