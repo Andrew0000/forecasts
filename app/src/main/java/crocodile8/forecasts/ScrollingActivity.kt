@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import crocodile8.forecasts.utils.log
 import crocodile8.forecasts.utils.subscribeDefault
 import kotlinx.android.synthetic.main.activity_scrolling.*
 
@@ -24,15 +23,16 @@ class ScrollingActivity : AppCompatActivity() {
     private fun setupAppBarCollapsing() {
         val appBarMaxHeight = resources.getDimensionPixelSize(R.dimen.app_bar_max_height)
         val appBarMinHeight = resources.getDimensionPixelSize(R.dimen.app_bar_min_height)
+        val workHeight = appBarMaxHeight - appBarMinHeight
         scrollListener.observeY()
             .subscribeDefault { yScroll ->
-                log("yScroll: $yScroll")
-                val expandFraction = (1f - (yScroll / appBarMaxHeight)).coerceIn(0f, 1f)
-                val appBarHeight =
-                    appBarMinHeight + (appBarMaxHeight - appBarMinHeight) * expandFraction
+                val expandFraction = (1f - (yScroll / workHeight)).coerceIn(0f, 1f)
                 mainTitleTextView.alpha = expandFraction
-                appBar.updateLayoutParams {
-                    height = appBarHeight.toInt()
+                val appBarHeight = (appBarMinHeight + workHeight * expandFraction).toInt()
+                if (appBarHeight != appBar.height) {
+                    appBar.updateLayoutParams {
+                        height = appBarHeight
+                    }
                 }
             }
     }
