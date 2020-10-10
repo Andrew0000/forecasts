@@ -1,4 +1,4 @@
-package crocodile8.forecasts.data
+package crocodile8.forecasts.data.models
 
 /**
  * Created by Andrei Riik in 2020.

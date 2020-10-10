@@ -1,5 +1,7 @@
 package crocodile8.forecasts.data
 
+import crocodile8.forecasts.data.models.Bookmaker
+import crocodile8.forecasts.data.models.Forecast
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit

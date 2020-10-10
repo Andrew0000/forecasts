@@ -3,9 +3,9 @@ package crocodile8.forecasts.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import crocodile8.forecasts.data.Bookmaker
+import crocodile8.forecasts.data.models.Bookmaker
 import crocodile8.forecasts.data.DataProvider
-import crocodile8.forecasts.data.Forecast
+import crocodile8.forecasts.data.models.Forecast
 import crocodile8.forecasts.presentation.bookmakers.BookmakersItem
 import crocodile8.forecasts.presentation.forecasts.ForecastItem
 import crocodile8.forecasts.utils.log
