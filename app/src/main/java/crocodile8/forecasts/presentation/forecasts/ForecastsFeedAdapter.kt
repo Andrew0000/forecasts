@@ -20,6 +20,7 @@ class ForecastsFeedAdapter(
     companion object {
         const val TYPE_CARD = 1
         const val TYPE_BOOKMAKERS = 2
+        const val TYPE_CARD_TITLE = 3
     }
 
     private var items = listOf<ForecastItem>()
@@ -39,6 +40,7 @@ class ForecastsFeedAdapter(
         return when (viewType) {
             TYPE_CARD -> createCardViewHolder(inflater, parent)
             TYPE_BOOKMAKERS -> createBookmakersViewHolder(inflater, parent)
+            TYPE_CARD_TITLE -> createCardsTitleViewHolder(inflater, parent)
             else -> throw IllegalArgumentException()
         }
     }
@@ -46,30 +48,39 @@ class ForecastsFeedAdapter(
     private fun createBookmakersViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-    ) =
-        BookmakersVH(
-            inflater.inflate(
-                R.layout.forecast_bookmakers_item,
-                parent,
-                false
-            )
-        ).also {
-            it.recycler.layoutManager =
-                LinearLayoutManager(parent.context, RecyclerView.HORIZONTAL, false)
-            it.recycler.adapter = it.adapter
-        }
+    ) = BookmakersVH(
+        inflater.inflate(
+            R.layout.forecast_bookmakers_item,
+            parent,
+            false
+        )
+    ).also {
+        it.recycler.layoutManager =
+            LinearLayoutManager(parent.context, RecyclerView.HORIZONTAL, false)
+        it.recycler.adapter = it.adapter
+    }
 
     private fun createCardViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
-    ) =
-        CardVH(
-            inflater.inflate(
-                R.layout.forecast_feed_item,
-                parent,
-                false
-            )
+    ) = CardVH(
+        inflater.inflate(
+            R.layout.forecast_feed_item,
+            parent,
+            false
         )
+    )
+
+    private fun createCardsTitleViewHolder(
+        inflater: LayoutInflater,
+        parent: ViewGroup
+    ) = CardsTitleVH(
+        inflater.inflate(
+            R.layout.forecast_cards_title_item,
+            parent,
+            false
+        )
+    )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
@@ -123,5 +134,7 @@ class ForecastsFeedAdapter(
         val adapter =
             BookmakersAdapter()
     }
+
+    class CardsTitleVH(view: View) : RecyclerView.ViewHolder(view)
 }
 

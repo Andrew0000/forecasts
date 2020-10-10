@@ -23,4 +23,8 @@ sealed class ForecastItem(val type: Int) {
     ) : ForecastItem(
         type = ForecastsFeedAdapter.TYPE_BOOKMAKERS
     )
+
+    object CardsTitle : ForecastItem(
+        type = ForecastsFeedAdapter.TYPE_CARD_TITLE
+    )
 }

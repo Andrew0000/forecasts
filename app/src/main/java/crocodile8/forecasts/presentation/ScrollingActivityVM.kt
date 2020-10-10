@@ -54,8 +54,10 @@ class ScrollingActivityVM : ViewModel() {
                     val bookmakersMapped = bookmakersData.map { mapBookmakers(it) }
                     val forecastsMapped = forecastsData.map { mapForecast(it) }
                     forecasts.value =
-                        listOf(ForecastItem.Bookmakers(bookmakersMapped)) +
-                                forecastsMapped
+                        listOf(
+                            ForecastItem.Bookmakers(bookmakersMapped),
+                            ForecastItem.CardsTitle
+                        ) + forecastsMapped
                     progressBarVisible.value = false
                     Unit
                 }
