@@ -20,4 +20,4 @@ inline fun <T> Observable<T>.subscribeDefault(crossinline block: (T) -> Unit = {
         Log.e("", "", it)
     })
 
-fun <T> Observable<T>.onMain() = observeOn(AndroidSchedulers.mainThread())
+fun <T> Observable<T>.onMain(): Observable<T> = observeOn(AndroidSchedulers.mainThread())

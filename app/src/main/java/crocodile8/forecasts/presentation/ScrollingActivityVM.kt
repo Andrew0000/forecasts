@@ -8,6 +8,7 @@ import crocodile8.forecasts.data.DataProvider
 import crocodile8.forecasts.data.Forecast
 import crocodile8.forecasts.presentation.bookmakers.BookmakersItem
 import crocodile8.forecasts.presentation.forecasts.ForecastItem
+import crocodile8.forecasts.utils.log
 import crocodile8.forecasts.utils.onMain
 import crocodile8.forecasts.utils.subscribeDefault
 import io.reactivex.Observable
@@ -35,6 +36,7 @@ class ScrollingActivityVM : ViewModel() {
     fun getProgressBarVisible(): LiveData<Boolean> = progressBarVisible
 
     fun onRepeatClick(item: ForecastItem.Card) {
+        log("click: $item")
         //TODO show something
     }
 
@@ -50,9 +52,10 @@ class ScrollingActivityVM : ViewModel() {
                 dataProvider.getBookmakers().onMain(),
                 BiFunction { forecastsData: List<Forecast>, bookmakersData: List<Bookmaker> ->
                     val bookmakersMapped = bookmakersData.map { mapBookmakers(it) }
+                    val forecastsMapped = forecastsData.map { mapForecast(it) }
                     forecasts.value =
                         listOf(ForecastItem.Bookmakers(bookmakersMapped)) +
-                                forecastsData.map { mapForecast(it) }
+                                forecastsMapped
                     progressBarVisible.value = false
                     Unit
                 }

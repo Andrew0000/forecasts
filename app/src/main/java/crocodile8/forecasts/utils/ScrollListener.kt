@@ -1,4 +1,4 @@
-package crocodile8.forecasts.presentation
+package crocodile8.forecasts.utils
 
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
