@@ -12,5 +12,6 @@ data class Forecast(
     val belowWho: String,
     val description: String,
     val authorName: String,
-    val authorROI: String
+    val authorROI: String,
+    val repeat: String
 )

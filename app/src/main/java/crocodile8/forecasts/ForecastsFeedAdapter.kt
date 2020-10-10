@@ -61,6 +61,7 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.description.text = item.description
         holder.authorName.text = item.authorName
         holder.authorROI.text = item.authorROI
+        holder.bottomText.text = item.repeat
     }
 
     sealed class Item(val type: Int) {
@@ -73,7 +74,8 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val belowWho: String,
             val description: String,
             val authorName: String,
-            val authorROI: String
+            val authorROI: String,
+            val repeat: String
         ) : Item(TYPE_CARD)
 
         data class Bookmakers(
@@ -90,6 +92,7 @@ class ForecastsFeedAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val description: TextView = view.description
         val authorName: TextView = view.authorName
         val authorROI: TextView = view.authorROI
+        val bottomText: TextView = view.bottomText
     }
 
     class BookmakersVH(view: View) : RecyclerView.ViewHolder(view)

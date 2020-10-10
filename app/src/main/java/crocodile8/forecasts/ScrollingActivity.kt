@@ -72,7 +72,8 @@ class ScrollingActivity : AppCompatActivity() {
             belowWho = belowWho,
             description = description,
             authorName = authorName,
-            authorROI = authorROI
+            authorROI = authorROI,
+            repeat = repeat
         )
     }
 }
