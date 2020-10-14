@@ -13,7 +13,6 @@ import crocodile8.forecasts.utils.onMain
 import crocodile8.forecasts.utils.subscribeDefault
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 
 /**
@@ -50,7 +49,7 @@ class ScrollingActivityVM : ViewModel() {
             .combineLatest(
                 dataProvider.getForecasts().onMain(),
                 dataProvider.getBookmakers().onMain(),
-                BiFunction { forecastsData: List<Forecast>, bookmakersData: List<Bookmaker> ->
+                { forecastsData: List<Forecast>, bookmakersData: List<Bookmaker> ->
                     val bookmakersMapped = bookmakersData.map { mapBookmakers(it) }
                     val forecastsMapped = forecastsData.map { mapForecast(it) }
                     forecasts.value =
@@ -84,7 +83,8 @@ class ScrollingActivityVM : ViewModel() {
         BookmakersItem(
             title = title,
             rating = rating.toString(),
-            bottomText = bottomText
+            bottomText = bottomText,
+            bgColor = bgColor
         )
     }
 }

@@ -6,5 +6,6 @@ package crocodile8.forecasts.data.models
 data class Bookmaker(
     val title: String,
     val rating: Float,
-    val bottomText: String
+    val bottomText: String,
+    val bgColor: Int
 )

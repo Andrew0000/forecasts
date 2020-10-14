@@ -4,11 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="180dp"
+    android:layout_width="@dimen/bookmaker_item_width"
     android:layout_height="@dimen/bookmaker_item_height"
     android:layout_marginTop="@dimen/default_margins"
     android:layout_marginBottom="@dimen/default_margins"
     android:layout_marginEnd="@dimen/default_margins"
+    app:cardElevation="8dp"
     app:cardCornerRadius="8dp">
 
     <TextView

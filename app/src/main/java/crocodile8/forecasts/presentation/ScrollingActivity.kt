@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import crocodile8.forecasts.R
@@ -57,10 +56,10 @@ class ScrollingActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.getForecasts().observe(this, Observer {
+        viewModel.getForecasts().observe(this, {
             adapter.setItems(it)
         })
-        viewModel.getProgressBarVisible().observe(this, Observer {
+        viewModel.getProgressBarVisible().observe(this, {
             progressBar.isVisible = it
         })
     }

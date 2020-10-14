@@ -130,9 +130,8 @@ class ForecastsFeedAdapter(
     }
 
     class BookmakersVH(view: View) : RecyclerView.ViewHolder(view) {
-        val recycler = view.ratingsRecyclerView
-        val adapter =
-            BookmakersAdapter()
+        val recycler: RecyclerView = view.ratingsRecyclerView
+        val adapter = BookmakersAdapter()
     }
 
     class CardsTitleVH(view: View) : RecyclerView.ViewHolder(view)

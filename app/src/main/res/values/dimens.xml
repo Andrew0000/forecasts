@@ -4,6 +4,7 @@
     <dimen name="default_margins">16dp</dimen>
     <dimen name="default_margins_half">8dp</dimen>
     <dimen name="default_margins_double">32dp</dimen>
-    <dimen name="bookmaker_item_height">120dp</dimen>
-    <dimen name="bookmaker_recycler_height">140dp</dimen>
+    <dimen name="bookmaker_item_width">160dp</dimen>
+    <dimen name="bookmaker_item_height">110dp</dimen>
+    <dimen name="bookmaker_recycler_height">156dp</dimen>
 </resources>

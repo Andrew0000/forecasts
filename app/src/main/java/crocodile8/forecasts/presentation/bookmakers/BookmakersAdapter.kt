@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import crocodile8.forecasts.R
 import kotlinx.android.synthetic.main.bookmaker_item.view.*
@@ -38,6 +39,7 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
             title.text = item.title
             rating.text = item.rating
             bottomText.text = item.bottomText
+            cardRoot.setCardBackgroundColor(item.bgColor)
         }
     }
 
@@ -45,6 +47,7 @@ class BookmakersAdapter : RecyclerView.Adapter<BookmakersAdapter.ViewHolder>() {
         val title: TextView = view.title
         val rating: TextView = view.rating
         val bottomText: TextView = view.bottomText
+        val cardRoot: CardView = view.cardRoot
     }
 }
 
